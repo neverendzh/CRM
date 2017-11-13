@@ -13,7 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * @author zh
@@ -147,6 +150,46 @@ public class CustomerController  extends BaseController{
 
     }
 
+    /**
+     * 将数据导出为CSV文件
+     */
+    @GetMapping("/my/export.csv")
+    public void exportCsv(HttpServletResponse httpServletResponse,
+                          HttpSession httpSession) throws IOException {
+        Account account = getCurrentAccount(httpSession);
+
+        httpServletResponse.setContentType("text/csv;charset=UTF-8");
+
+        String fileName = new String("我的客户".getBytes("UTF-8"),"ISO8859-1");
+        httpServletResponse.addHeader("Content-Disposition","attachment; filename=\""+fileName+"\"");
+
+        OutputStream outputStream = httpServletResponse.getOutputStream();
+        customerService.exportCsvFileToOutputStream(outputStream,account);
+
+
+    }
+
+    /**
+     * 将客户资料导出为xls文件
+     * @param httpServletResponse
+     * @param httpSession
+     * @throws IOException
+     */
+    @GetMapping("/my/export.xls")
+    public void exportXls(HttpServletResponse httpServletResponse,
+                          HttpSession httpSession) throws IOException {
+        Account account = getCurrentAccount(httpSession);
+
+        httpServletResponse.setContentType("application/vnd.ms-excel");
+
+        String fileName = new String("我的客户.xls".getBytes("UTF-8"),"ISO8859-1");
+        httpServletResponse.addHeader("Content-Disposition","attachment; filename=\""+fileName+"\"");
+
+        OutputStream outputStream = httpServletResponse.getOutputStream();
+        customerService.exportXlsFileToOutputStream(outputStream,account);
+
+
+    }
 
     /**
      * 公海客户列表

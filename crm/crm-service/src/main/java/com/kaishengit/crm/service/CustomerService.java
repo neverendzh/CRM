@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.kaishengit.crm.entity.Account;
 import com.kaishengit.crm.entity.Customer;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -74,4 +76,18 @@ public interface CustomerService {
      */
     void tranCustomer(Customer customer, Integer toAccountId);
 
+    /**
+     * 导出客户资料为CSV文件
+     * @param outputStream
+     * @param account
+     */
+    void exportCsvFileToOutputStream(OutputStream outputStream, Account account) throws IOException;
+
+    /**
+     * 将客户资料导出为slx文件
+     * @param outputStream
+     * @param account
+     * @throws IOException
+     */
+    void exportXlsFileToOutputStream(OutputStream outputStream, Account account)throws IOException;
 }

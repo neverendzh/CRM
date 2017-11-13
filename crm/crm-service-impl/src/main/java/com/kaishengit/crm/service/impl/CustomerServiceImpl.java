@@ -8,12 +8,20 @@ import com.kaishengit.crm.example.CustomerExample;
 import com.kaishengit.crm.mapper.AccountMapper;
 import com.kaishengit.crm.mapper.CustomerMapper;
 import com.kaishengit.crm.service.CustomerService;
+import org.apache.commons.io.IOUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -147,5 +155,88 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setAccountId(toAccountId);
         customer.setReminder(customer.getReminder()+"--->"+"从"+account.getUserName()+"转交过来");
         customerMapper.updateByPrimaryKeySelective(customer);
+    }
+
+    /**
+     * 导出客户资料为CSV文件
+     *
+     * @param outputStream
+     * @param account
+     */
+    @Override
+    public void exportCsvFileToOutputStream(OutputStream outputStream, Account account) throws IOException {
+        List<Customer> customerList = findAllCustomerByAccountId(account);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("姓名")
+                .append(",")
+                .append("联系电话")
+                .append(",")
+                .append("职位")
+                .append(",")
+                .append("地址")
+                .append(",")
+                .append("创建时间")
+                .append("\r\n");
+        for(Customer customer :customerList){
+            stringBuilder.append(customer.getCustName())
+                    .append(",")
+                    .append(customer.getMobile())
+                    .append(",")
+                    .append(customer.getJobTitle())
+                    .append(",")
+                    .append(customer.getAddress())
+                    .append(",")
+                    .append(customer.getCreateTime())
+                    .append("\r\n");
+        }
+        IOUtils.write(stringBuilder.toString(),outputStream,"UTF-8");
+        outputStream.flush();
+        outputStream.close();
+    }
+
+    /**
+     * 将客户资料导出为slx文件
+     *
+     * @param outputStream
+     * @param account
+     * @throws IOException
+     */
+    @Override
+    public void exportXlsFileToOutputStream(OutputStream outputStream, Account account) throws IOException {
+        List<Customer> customerList = findAllCustomerByAccountId(account);
+
+        //创建工作表
+        Workbook workbook = new HSSFWorkbook();
+        //创见sheet页脚
+        Sheet sheet = workbook.createSheet("我的客户");
+        //创建行
+        Row titleRow = sheet.createRow(0);
+        //创建单元格
+        Cell nameCell = titleRow.createCell(0);
+        nameCell.setCellValue("姓名");
+        titleRow.createCell(1).setCellValue("电话");
+        titleRow.createCell(2).setCellValue("职位");
+        titleRow.createCell(3).setCellValue("地址");
+        titleRow.createCell(4).setCellValue("创建时间");
+        for(int i = 0;i<customerList.size();i++){
+            Customer customer = customerList.get(i);
+            Row datRow = sheet.createRow(i+1);
+            datRow.createCell(0).setCellValue(customer.getCustName());
+            datRow.createCell(1).setCellValue(customer.getMobile());
+            datRow.createCell(2).setCellValue(customer.getJobTitle());
+            datRow.createCell(3).setCellValue(customer.getAddress());
+            datRow.createCell(4).setCellValue(customer.getCreateTime());
+        }
+        workbook.write(outputStream);
+        outputStream.flush();
+        outputStream.close();
+
+    }
+
+    private List<Customer> findAllCustomerByAccountId(Account account) {
+        CustomerExample customerExample = new CustomerExample();
+        customerExample.createCriteria().andAccountIdEqualTo(account.getId());
+        List<Customer> customerList = customerMapper.selectByExample(customerExample);
+        return  customerList;
     }
 }

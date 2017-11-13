@@ -34,6 +34,11 @@
             <version>1.10</version>
         </dependency>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.25</version>
@@ -48,6 +53,18 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.6</version>
         </dependency>
+<!--poi是用于导出文件为xls文件，如果要导出xlsx文件需要使用到poi-ooxml这个jar-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>-->
     </dependencies>
 
     <build>
