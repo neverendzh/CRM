@@ -134,4 +134,18 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setUpdateTime(new Date());
         customerMapper.updateByPrimaryKeySelective(customer);
     }
+
+    /**
+     * 转交客户给其他员工
+     *
+     * @param customer    客户对象
+     * @param toAccountId 转入账号ID
+     */
+    @Override
+    public void tranCustomer(Customer customer, Integer toAccountId) {
+        Account account = accountMapper.selectByPrimaryKey(customer.getAccountId());
+        customer.setAccountId(toAccountId);
+        customer.setReminder(customer.getReminder()+"--->"+"从"+account.getUserName()+"转交过来");
+        customerMapper.updateByPrimaryKeySelective(customer);
+    }
 }

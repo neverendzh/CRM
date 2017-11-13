@@ -66,4 +66,12 @@ public interface CustomerService {
      * @param customer
      */
     void editCustomer(Customer customer);
+
+    /**
+     * 转交客户给其他员工
+     * @param customer 客户对象
+     * @param toAccountId 转入账号ID
+     */
+    void tranCustomer(Customer customer, Integer toAccountId);
+
 }

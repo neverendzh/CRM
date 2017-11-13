@@ -5,6 +5,7 @@ import com.kaishengit.crm.controller.exception.ForbiddenException;
 import com.kaishengit.crm.controller.exception.NotFoundException;
 import com.kaishengit.crm.entity.Account;
 import com.kaishengit.crm.entity.Customer;
+import com.kaishengit.crm.service.AccountService;
 import com.kaishengit.crm.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ public class CustomerController  extends BaseController{
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private AccountService accountService;
     /**
      * 访问我的客户
      * @return
@@ -67,6 +70,7 @@ public class CustomerController  extends BaseController{
     public String showCustomer(@PathVariable Integer id,HttpSession httpSession,Model model){
       Customer customer = checkCustomerRole(id,httpSession);
         model.addAttribute("customer",customer);
+        model.addAttribute("accountList",accountService.findAllAccount());
         return "customer/show";
     }
 
@@ -126,13 +130,31 @@ public class CustomerController  extends BaseController{
 
     }
 
+
+    /**
+     * 转交给客户给其他销售人员
+     * @return
+     */
+    @GetMapping("/my/{customerId:\\d+}/tran/{toAccountId:\\d+}")
+    public String tranCustomer(@PathVariable Integer customerId,
+                               @PathVariable Integer toAccountId,
+                               HttpSession httpSession,
+                               RedirectAttributes redirectAttributes){
+        Customer customer = checkCustomerRole(customerId,httpSession);
+        customerService.tranCustomer(customer,toAccountId);
+        redirectAttributes.addFlashAttribute("message","客户转件成功");
+        return "redirect:/customer/my";
+
+    }
+
+
     /**
      * 公海客户列表
      * @return
      */
     @GetMapping("/public")
     public String publicCustomer(){
-        return "custmoer/public";
+        return "customer/public";
     }
 
     /**

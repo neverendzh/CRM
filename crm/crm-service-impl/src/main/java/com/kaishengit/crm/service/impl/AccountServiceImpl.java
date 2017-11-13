@@ -208,4 +208,14 @@ public class AccountServiceImpl implements AccountService {
         //2.删除账号
         accountMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+     * 返回所有的员工对象
+     *
+     * @return 集合
+     */
+    @Override
+    public List<Account> findAllAccount() {
+        return accountMapper.selectByExample(new AccountExample());
+    }
 }
