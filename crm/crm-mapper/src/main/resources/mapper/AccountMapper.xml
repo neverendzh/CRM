@@ -170,42 +170,42 @@
 
     <select id="findByDeptId" resultMap="AccountWithDeptMap">
         SELECT
-            account.*, dept.id AS dept_id,
-            dept.dept_name,
-            dept.p_id
+        account.*, dept.id AS dept_id,
+        dept.dept_name,
+        dept.p_id
         FROM
-            account
+        account
         INNER JOIN account_dept ON account.id = account_dept.account_id
         INNER JOIN dept ON account_dept.dept_id = dept.id
         INNER JOIN (
-            <choose>
-                <when test="deptId != null and deptId != ''">
-                    SELECT
-                      id
-                    FROM
-                      account
-                    INNER JOIN account_dept ON account_dept.account_id = account.id
-                    <where>
-                        account_dept.dept_id = #{deptId}
-                        <if test="accountName != null and accountName != ''">
-                          and user_name like concat('%',#{accountName},'%')
-                        </if>
-                    </where>
-                        LIMIT #{start},#{length}
-                </when>
-                <otherwise>
-                    SELECT
-                      id
-                    FROM
-                      account
-                    <where>
-                        <if test="accountName != null and accountName != ''">
-                            user_name like concat('%',#{accountName},'%')
-                        </if>
-                    </where>
-                      LIMIT #{start},#{length}
-                </otherwise>
-            </choose>
+        <choose>
+            <when test="deptId != null and deptId != ''">
+                SELECT
+                id
+                FROM
+                account
+                INNER JOIN account_dept ON account_dept.account_id = account.id
+                <where>
+                    account_dept.dept_id = #{deptId}
+                    <if test="accountName != null and accountName != ''">
+                        and user_name like concat('%',#{accountName},'%')
+                    </if>
+                </where>
+                LIMIT #{start},#{length}
+            </when>
+            <otherwise>
+                SELECT
+                id
+                FROM
+                account
+                <where>
+                    <if test="accountName != null and accountName != ''">
+                        user_name like concat('%',#{accountName},'%')
+                    </if>
+                </where>
+                LIMIT #{start},#{length}
+            </otherwise>
+        </choose>
         ) AS temp ON account.id = temp.id
         order by account.id desc
     </select>

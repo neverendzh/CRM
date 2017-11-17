@@ -160,7 +160,7 @@ public class AccountServiceImpl implements AccountService {
      * @param deptIds   所属部门ID，可以多个
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     public void saveNewEmployee(String userName, String mobile, String password, Integer[] deptIds) throws ServiceException {
         //1.验证手机号是否被使用
         AccountExample accountExample = new AccountExample();
@@ -197,7 +197,7 @@ public class AccountServiceImpl implements AccountService {
      * @throws ServiceException
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     public void deleteEmployeeById(Integer id) throws ServiceException {
         //0.TODO 判断其他的关联关系
         //1.删除关联关系

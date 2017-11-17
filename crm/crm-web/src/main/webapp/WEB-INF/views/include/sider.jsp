@@ -33,30 +33,22 @@
             </li>
             <!-- 工作记录 -->
             <li class="treeview">
-                <a href="#">
+                <a href="/sales/my">
                     <i class="fa fa-bars"></i> <span>工作记录</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/recode/my"><i class="fa fa-circle-o"></i> 我的记录</a></li>
-                    <li><a href="/recode/public"><i class="fa fa-circle-o"></i> 公共记录</a></li>
+                    <li><a href="/sales/my"><i class="fa fa-circle-o"></i> 我的记录</a></li>
+                    <li><a href="/sales/public"><i class="fa fa-circle-o"></i> 公共记录</a></li>
                 </ul>
             </li>
+
             <!-- 待办事项 -->
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-calendar"></i> <span>待办事项</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/task"><i class="fa fa-circle-o"></i> 待办列表</a></li>
-                    <li><a href=""><i class="fa fa-circle-o"></i> 逾期事项</a></li>
-                </ul>
-            </li>
+            <li class="${param.menu == 'task' ? 'active' : ''}"><a href="/task"><i class="fa fa-calendar"></i> <span>待办事项</span></a></li>
+
+
             <!-- 统计报表 -->
             <li class="treeview">
                 <a href="#">
