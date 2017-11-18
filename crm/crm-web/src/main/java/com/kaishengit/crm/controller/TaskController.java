@@ -39,11 +39,7 @@ public class TaskController extends BaseController {
                            HttpSession httpSession){
         Account account = getCurrentAccount(httpSession);
         List<Task> taskList = taskService.findTaskByAccountId(account.getId());
-        for(Task task :taskList){
-            System.out.println(task.getTitle());
-        }
         model.addAttribute("taskList",taskList);
-
         return "/task/home";
 
     }

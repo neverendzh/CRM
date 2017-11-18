@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--将job类放入Spring容器中-->
+    <bean id="SpringQuartzJob" class="com.kaishengit.crm.jobs.SpringQuartzJob"/>
+
+
+    <!--定义JobDetail需要执行的任务-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!--job类执行的任务类-->
+        <property name="targetObject" ref="SpringQuartzJob"/>
+        <!--执行job类中方法-->
+        <property name="targetMethod" value="runSpringQuartzJob"/>
+    </bean>
+
+    <!--定义Trigger触发器-->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <!--定义JobDetail执行的任务-->
+        <property name="jobDetail" ref="jobDetail"/>
+        <!--定义Cron表达式，也就是触发的时间-->
+         <property name="cronExpression" value="0/2 * * * * ? *"/>
+
+    </bean>
+
+    <!--定义调度器-->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!--<property name="triggers">
+            <list>
+                &lt;!&ndash;调度去要执行的Trigger触发器&ndash;&gt;
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>-->
+
+    </bean>
+
+</beans>

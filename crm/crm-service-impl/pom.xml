@@ -89,6 +89,12 @@
             <version>2.2.1</version>
         </dependency>
 
+        <!--Spring定时任务的配置的jar-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
