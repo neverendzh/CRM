@@ -70,5 +70,7 @@
 <script src="/static/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/plugins/echarts/echarts.min.js"></script>
+
 </body>
 </html>

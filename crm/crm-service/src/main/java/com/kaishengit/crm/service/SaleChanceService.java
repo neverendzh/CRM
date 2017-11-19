@@ -6,6 +6,7 @@ import com.kaishengit.crm.entity.SaleChance;
 import com.kaishengit.crm.entity.SaleChanceRecord;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zh
@@ -72,4 +73,10 @@ public interface SaleChanceService {
      * @return
      */
     List<SaleChance> findSalesChanceByCustId(Integer id);
+
+    /**
+     * 查询客户成交的数据分类
+     * @return
+     */
+    List<Map<String,Object>> findCustomerCountBySaleChangce();
 }

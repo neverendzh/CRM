@@ -360,4 +360,14 @@
       account_id = #{accountId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findCustomerCountBySaleChangce" resultType="java.util.Map">
+            SELECT
+        count(*) as 'value',
+        progress as 'name'
+    FROM
+        sale_chance
+    GROUP BY
+        progress
+  </select>
 </mapper>

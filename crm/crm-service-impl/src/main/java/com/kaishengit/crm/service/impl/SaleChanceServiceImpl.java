@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zh
@@ -181,6 +182,16 @@ public class SaleChanceServiceImpl  implements SaleChanceService{
         saleChanceExample.createCriteria().andCustIdEqualTo(id);
         saleChanceExample.setOrderByClause("last_time desc");
         return saleChanceMapper.selectByExample(saleChanceExample);
+    }
+
+    /**
+     * 查询客户成交的数据分类
+     *
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> findCustomerCountBySaleChangce() {
+        return saleChanceMapper.findCustomerCountBySaleChangce();
     }
 
     /**

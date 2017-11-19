@@ -7,6 +7,7 @@ import com.kaishengit.crm.entity.Customer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zh
@@ -97,4 +98,17 @@ public interface CustomerService {
      * @return
      */
     List<Customer> findAllCustomerByAccountId(Account account);
+
+    /**
+     *  查询各个星级的客户数量
+     * @return
+     */
+    List<Map<String,Object>> findCustomerCountBylevel();
+
+    /**
+     * 查询每个月新增可数的数量
+     * @return
+     */
+    List<Map<String,Object>> findCustomerCountByMouthNum();
+
 }

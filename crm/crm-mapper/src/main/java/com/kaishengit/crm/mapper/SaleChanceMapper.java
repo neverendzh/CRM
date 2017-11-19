@@ -2,6 +2,7 @@ package com.kaishengit.crm.mapper;
 
 import com.kaishengit.crm.entity.SaleChance;
 import java.util.List;
+import java.util.Map;
 
 import com.kaishengit.crm.example.SaleChanceExample;
 import org.apache.ibatis.annotations.Param;
@@ -38,4 +39,6 @@ public interface SaleChanceMapper {
     List<SaleChance> findByAccountId(Integer id);
 
     SaleChance findChanceWithCustomerById(Integer id);
+
+    List<Map<String,Object>> findCustomerCountBySaleChangce();
 }

@@ -367,4 +367,25 @@
       sex = #{sex,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findCustomerCountBylevel" resultType="java.util.Map">
+      SELECT
+              count(*) AS 'count',
+              `level`
+          FROM
+              customer
+          GROUP BY
+              `level`
+  </select>
+
+
+  <select id="findCustomerCountByMouthNum" resultType="java.util.Map">
+       SELECT
+        COUNT(*) AS 'num',
+        MONTH (create_time) AS 'mouth'
+    FROM
+        customer
+    GROUP BY
+        MONTH (create_time)
+  </select>
 </mapper>

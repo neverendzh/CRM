@@ -58,8 +58,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i> 待办列表</a></li>
-                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> 逾期事项</a></li>
+                    <li><a href="/echarts/echarts"><i class="fa fa-circle-o"></i> 客户级别统计</a></li>
+                    <li><a href="/echarts/static"><i class="fa fa-circle-o"></i>视图实例</a></li>
                 </ul>
             </li>
 
