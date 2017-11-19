@@ -388,4 +388,13 @@
     GROUP BY
         MONTH (create_time)
   </select>
+
+  <select id="findAllpublicCustomer" resultMap="BaseResultMap">
+      SELECT
+          *
+      FROM
+          customer
+      WHERE
+          account_id IS NULL
+  </select>
 </mapper>

@@ -127,7 +127,7 @@ public class CustomerServiceImpl implements CustomerService {
      */
     @Override
     public void publicCustomer(Customer customer) {
-        Account account = accountMapper.selectByPrimaryKey(customer.getId());
+        Account account = accountMapper.selectByPrimaryKey(customer.getAccountId());
         customer.setAccountId(null);
         customer.setReminder(customer.getReminder()+"--->"+account.getUserName()+"将该客户放入公海");
         customerMapper.updateByPrimaryKey(customer);
@@ -260,6 +260,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Map<String, Object>> findCustomerCountByMouthNum() {
         return customerMapper.findCustomerCountByMouthNum();
+    }
+
+    /**
+     *
+     */
+    @Override
+    public List<Customer> findAllpublicCustomer() {
+        return customerMapper.findAllpublicCustomer();
     }
 
 }

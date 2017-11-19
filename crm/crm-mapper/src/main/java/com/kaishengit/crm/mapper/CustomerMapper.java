@@ -33,4 +33,6 @@ public interface CustomerMapper {
     List<Map<String,Object>> findCustomerCountBylevel();
 
     List<Map<String,Object>> findCustomerCountByMouthNum();
+
+    List<Customer> findAllpublicCustomer();
 }

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,22 +70,24 @@
                             <th>级别</th>
                             <th>联系方式</th>
                         </tr>
-                        <tr>
-                            <td><span class="name-avatar">张</span></td>
-                            <td>张翼飞</td>
-                            <td>总经理</td>
-                            <td>7月19日</td>
-                            <td class="star">★★★★★</td>
-                            <td><i class="fa fa-phone"></i> 18939130988 <br></td>
-                        </tr>
-                        <tr>
-                            <td><span class="name-avatar">A</span></td>
-                            <td>Aimi</td>
-                            <td>销售顾问</td>
-                            <td>7月18日</td>
-                            <td class="star">★★★</td>
-                            <td><i class="fa fa-phone"></i> 17039130988 <br></td>
-                        </tr>
+
+                        <c:if test="${empty publicCustomer}">
+                            <tr>
+                                <td colspan="6">暂无数据</td>
+                            </tr>
+                        </c:if>
+                        <c:forEach items="${publicCustomer}" var="customer">
+                            <tr class="dataRow" rel="${customer.id}">
+                                <td><span class="name-avatar ${customer.sex == '女' ? 'pink' : ''}">${fn:substring(customer.custName,0 ,1 )}</span></td>
+                                <td>${customer.custName}</td>
+                                <td>${customer.jobTitle}</td>
+                                <td><fmt:formatDate value="${customer.lastContactTime}"/></td>
+                                <td class="star">${customer.level}</td>
+                                <td><i class="fa fa-phone"></i> ${customer.mobile} <br></td>
+                            </tr>
+
+                        </c:forEach>
+
                         </tbody>
                     </table>
                 </div>

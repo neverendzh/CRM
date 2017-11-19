@@ -206,7 +206,13 @@ public class CustomerController  extends BaseController{
      * @return
      */
     @GetMapping("/public")
-    public String publicCustomer(){
+    public String publicCustomer(HttpSession httpSession,Model model){
+        Account account = getCurrentAccount(httpSession);
+        List<Customer> customerList = customerService.findAllpublicCustomer();
+        for(Customer customer : customerList){
+            System.out.println(customer);
+        }
+        model.addAttribute("publicCustomer",customerList);
         return "customer/public";
     }
 

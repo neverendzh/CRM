@@ -111,4 +111,8 @@ public interface CustomerService {
      */
     List<Map<String,Object>> findCustomerCountByMouthNum();
 
+    /**
+     *
+     */
+    List<Customer> findAllpublicCustomer();
 }
