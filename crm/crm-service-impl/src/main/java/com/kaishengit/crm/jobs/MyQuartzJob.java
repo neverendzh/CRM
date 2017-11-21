@@ -16,9 +16,9 @@ public class MyQuartzJob implements Job{
     public void execute (JobExecutionContext jobExecutionContext) throws JobExecutionException {
         JobDataMap dataMap  = jobExecutionContext.getJobDetail().getJobDataMap();
         Integer accountId = dataMap.getIntegerFromString("accountId");
-        int put = dataMap.getInt("put");
+        //int put = dataMap.getInt("put");
         System.out.println("accountId-----"+accountId);
-        System.out.println("put-----"+put);
+        //System.out.println("put-----"+put);
         System.out.println("Quartz Running.........");
 
     }

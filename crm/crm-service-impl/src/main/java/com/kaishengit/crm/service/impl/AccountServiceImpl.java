@@ -2,6 +2,7 @@ package com.kaishengit.crm.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.kaishengit.WeiXinUtil;
 import com.kaishengit.crm.entity.Account;
 import com.kaishengit.crm.entity.AccountDeptKey;
 import com.kaishengit.crm.entity.Dept;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +49,8 @@ public class AccountServiceImpl implements AccountService {
     private DeptMapper deptMapper;
     @Autowired
     private AccountDeptMapper accountDeptMapper;
+    @Autowired
+    private WeiXinUtil weiXinUtil;
 
 
     /**
@@ -83,6 +87,7 @@ public class AccountServiceImpl implements AccountService {
      * @throws ServiceException 例如添加部门名称已存在
      */
     @Override
+    @Transactional(rollbackFor = RuntimeException.class)
     public void saveNewDept(String deptName) throws ServiceException {
         //判断deptName是否存在
         DeptExample example = new DeptExample();
@@ -102,6 +107,9 @@ public class AccountServiceImpl implements AccountService {
         dept.setpId(COMPANY_ID);
 
         deptMapper.insertSelective(dept);
+
+        //同步部门发送到微信进行同步
+        weiXinUtil.creatDept(dept.getId(),COMPANY_ID,deptName);
 
         logger.info("添加新部门 {}",deptName);
     }
@@ -187,6 +195,8 @@ public class AccountServiceImpl implements AccountService {
             accountDeptMapper.insert(accountDeptKey);
         }
 
+        //添加账号同步到微信
+        weiXinUtil.creatMember(account.getId(),userName,mobile, Arrays.asList(deptIds));
         logger.info("添加新账号 {}",userName);
     }
 

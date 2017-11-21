@@ -18,7 +18,7 @@
         <!-- /.search form -->
         <!-- 菜单 -->
         <ul class="sidebar-menu">
-            <li class="${param.menu == 'home' ? 'active' : ''}"><a href="../../documentation/index.html"><i class="fa fa-home"></i> <span>首页</span></a></li>
+            <li class="${param.menu == 'home' ? 'active' : ''}"><a href="home"><i class="fa fa-home"></i> <span>首页</span></a></li>
             <li class="header">系统功能</li>
             <!-- 客户管理 -->
             <li class="treeview ${fn:startsWith(param.menu,'customer_') ? 'active' : ''}">
@@ -32,25 +32,13 @@
                 </ul>
             </li>
             <!-- 工作记录 -->
-            <li class="treeview">
-                <a href="/sales/my">
-                    <i class="fa fa-bars"></i> <span>工作记录</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/sales/my"><i class="fa fa-circle-o"></i> 我的记录</a></li>
-                    <li><a href="/sales/public"><i class="fa fa-circle-o"></i> 公共记录</a></li>
-                </ul>
-            </li>
-
+            <li class="${param.menu == 'sales_my' ? 'active' : ''}"><a href="/sales/my"><i class="fa fa-calendar"></i> <span>工作记录</span></a></li>
             <!-- 待办事项 -->
             <li class="${param.menu == 'task' ? 'active' : ''}"><a href="/task"><i class="fa fa-calendar"></i> <span>待办事项</span></a></li>
 
 
             <!-- 统计报表 -->
-            <li class="treeview">
+            <li class="treeview ${fn:startsWith(param.menu,'charts_') ? 'active' : ''}">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i> <span>统计报表</span>
                     <span class="pull-right-container">
@@ -58,13 +46,15 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/echarts/echarts"><i class="fa fa-circle-o"></i> 客户级别统计</a></li>
-                    <li><a href="/echarts/static"><i class="fa fa-circle-o"></i>视图实例</a></li>
+                    <%--客户级别统计--%>
+                    <li class="${param.menu == 'charts_customer' ? 'active' : ''}"><a href="/echarts/echarts"><i class="fa fa-circle-o"></i> 客户级别统计</a></li>
+                    <%--视图实例--%>
+                    <li class="${param.menu == 'charts_static' ? 'active' : ''}"><a href="/echarts/static"><i class="fa fa-circle-o"></i>视图实例</a></li>
                 </ul>
             </li>
 
 
-            <li><a href="../../documentation/index.html"><i class="fa fa-share-alt"></i> <span>公司网盘</span></a></li>
+            <li><a href="/disk/home"><i class="fa fa-share-alt"></i> <span>公司网盘</span></a></li>
             <li class="header">系统管理</li>
             <!-- 部门员工管理 -->
             <li class="${param.menu == 'employee' ? 'active' : ''}"><a href="/employee"><i class="fa fa-users"></i> <span>员工管理</span></a></li>

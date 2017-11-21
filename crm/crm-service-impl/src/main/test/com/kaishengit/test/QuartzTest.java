@@ -14,7 +14,7 @@ import java.io.IOException;
 public class QuartzTest {
     @Test
     public void simpleTrigger() throws SchedulerException, IOException {
-        //定义Job
+      /*  //定义Job
         JobDetail jobDetail = JobBuilder.newJob(MyQuartzJob.class).build();
         //定义Trigger
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule();
@@ -27,14 +27,14 @@ public class QuartzTest {
         scheduler.scheduleJob(jobDetail,trigger);
         scheduler.start();
 
-        System.in.read();
+        System.in.read();*/
 
     }
 
 
     @Test
     public void conTrigger() throws SchedulerException, IOException {
-        //定义Job,也就是需要执行的任务
+       /* //定义Job,也就是需要执行的任务
         JobDataMap dataMap = new JobDataMap();
         //使用putAsString存值，取值时使用getIntegerFromString取值
         dataMap.putAsString("accountId",1000);
@@ -53,7 +53,7 @@ public class QuartzTest {
         //运行程序
         scheduler.start();
 
-        System.in.read();
+        System.in.read();*/
 
     }
 }

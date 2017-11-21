@@ -28,9 +28,7 @@
                     <h3 class="box-title">新增待办事项</h3>
 
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool">
-                            <i class="fa fa-plus"></i> 返回列表
-                        </button>
+                        <a href="/task" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i> 返回列表</a>
                     </div>
                 </div>
                 <div class="box-body">

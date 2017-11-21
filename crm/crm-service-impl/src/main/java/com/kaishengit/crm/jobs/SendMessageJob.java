@@ -21,9 +21,6 @@ public class SendMessageJob implements Job {
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         String message = (String) dataMap.get("message");
         Integer accountId = dataMap.getInt("accountId");
-
-
-
         logger.info("To:{} message:{}",accountId,message);
 
     }
