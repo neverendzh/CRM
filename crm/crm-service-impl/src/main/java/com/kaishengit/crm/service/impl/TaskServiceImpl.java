@@ -18,6 +18,8 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -111,6 +113,28 @@ public class TaskServiceImpl implements TaskService {
 
         return taskMapper.selectByExample(taskExample);
     }
+
+    /**
+     * 根据哟用户ID查找对应的代办事项，查询出未完成的代办事项
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Task> findTaskByAccountIdNoTask(Integer id) {
+        TaskExample taskExample = new TaskExample();
+        taskExample.createCriteria().andAccountIdEqualTo(id);
+        taskExample.setOrderByClause("id desc");
+        List<Task> taskList = taskMapper.selectByExample(taskExample);
+        List<Task> taskNo = new ArrayList<Task>();
+        for(Task task : taskList){
+            if(task.isOverTime()){
+                taskNo.add(task);
+            }
+        }
+        return taskNo;
+    }
+
 
     /**
      * 根据id查找代办事项

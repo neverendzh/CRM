@@ -29,16 +29,45 @@ public class TaskController extends BaseController {
     private TaskService taskService;
 
 
-
     /**
      * 显示所有的代办事项
      * @return
      */
     @GetMapping
+    public String taskLists(Model model,
+                           HttpSession httpSession){
+        Account account = getCurrentAccount(httpSession);
+        List<Task> taskList = taskService.findTaskByAccountId(account.getId());
+        model.addAttribute("taskList",taskList);
+        return "/task/home";
+
+    }
+
+    /**
+     * 显示所有的代办事项
+     * @return
+     */
+    @GetMapping("/showAll")
     public String taskList(Model model,
                            HttpSession httpSession){
         Account account = getCurrentAccount(httpSession);
         List<Task> taskList = taskService.findTaskByAccountId(account.getId());
+        model.addAttribute("taskList",taskList);
+        return "/task/home";
+
+    }
+
+    /**
+     * 未完成的所有代办事项
+     * @param model
+     * @param httpSession
+     * @return
+     */
+    @GetMapping("showNoAll")
+    public String noTaskList(Model model,
+                           HttpSession httpSession){
+        Account account = getCurrentAccount(httpSession);
+        List<Task> taskList = taskService.findTaskByAccountIdNoTask(account.getId());
         model.addAttribute("taskList",taskList);
         return "/task/home";
 

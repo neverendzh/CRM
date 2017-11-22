@@ -109,7 +109,7 @@ public class Task implements Serializable {
      */
     public boolean isOverTime() {
         //String -> DateTime
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         DateTime finishTime = formatter.parseDateTime(getFinishTime());
         return finishTime.isBeforeNow();
     }

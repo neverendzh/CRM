@@ -50,12 +50,12 @@
         <!--是否覆盖数据库中已有的任务-->
         <property name="overwriteExistingJobs" value="true"/>
 
-        <property name="triggers">
+       <!-- <property name="triggers">
             <list>
-                <!--调度去要执行的Trigger触发器-->
+                &lt;!&ndash;调度去要执行的Trigger触发器&ndash;&gt;
                 <ref bean="cronTrigger"/>
             </list>
-        </property>
+        </property>-->
 
     </bean>
 

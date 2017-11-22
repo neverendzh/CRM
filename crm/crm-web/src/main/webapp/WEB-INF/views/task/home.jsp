@@ -30,10 +30,10 @@
                         <a href="/task/new" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> 新增任务</a>
                         <c:choose>
                             <c:when test="${not (param.show == 'all')}">
-                                <a href="/task?show=all" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> 显示所有任务</a>
+                                <a href="/task/showAll" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> 显示所有任务</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="/task" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> 显示未完成任务</a>
+                                <a href="/task/showNoAll" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> 显示未完成任务</a>
                             </c:otherwise>
                         </c:choose>
 
@@ -54,7 +54,7 @@
                                         <a href="/sales/my/${task.saleChance.id}"><i class="fa fa-money"></i> ${task.saleChance.name}</a>
                                     </c:when>
                                 </c:choose>--%>
-                                <small class="label ${task.overTime ? 'label-danger' : 'label-success'}"><i class="fa fa-clock-o"></i> ${task.finishTime}</small>
+                                <%--<small class="label ${task.overTime ? 'label-danger' : 'label-success'}"><i class="fa fa-clock-o"></i> ${task.finishTime}</small>--%>
                                 <div class="tools">
                                     <i class="fa fa-edit"></i>
                                     <i class="fa fa-trash-o del_task" rel="${task.id}"></i>

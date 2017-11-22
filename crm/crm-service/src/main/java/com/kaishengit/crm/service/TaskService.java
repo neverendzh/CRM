@@ -36,4 +36,6 @@ public interface TaskService {
      * @return
      */
     Task findTaskId(Integer id);
+
+    public List<Task> findTaskByAccountIdNoTask(Integer id);
 }
