@@ -217,6 +217,8 @@ public class AccountServiceImpl implements AccountService {
         accountDeptMapper.deleteByExample(accountDeptExample);
         //2.删除账号
         accountMapper.deleteByPrimaryKey(id);
+        String idwexin =id.toString();
+        weiXinUtil.deleteMember(idwexin);
     }
 
     /**

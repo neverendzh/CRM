@@ -23,12 +23,11 @@
         <property name="jobClass" value="com.kaishengit.crm.jobs.MyQuartzJob"/>
         <property name="jobDataAsMap">
             <map>
-                <entry key="accountId" value="5000"/>
+                <entry key="accountId" value="9000"/>
             </map>
         </property>
 
     </bean>
-
 
     <!--定义Trigger触发器-->
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -41,6 +40,7 @@
 
     <!--定义调度器-->
     <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="applicationContextSchedulerContextKey" value="springApplicationContext"/>
         <!--配置数据库连接池-->
         <property name="dataSource" ref="dataSource"/>
         <!--配置事务管理器-->
@@ -50,12 +50,12 @@
         <!--是否覆盖数据库中已有的任务-->
         <property name="overwriteExistingJobs" value="true"/>
 
-       <!-- <property name="triggers">
+        <property name="triggers">
             <list>
-                &lt;!&ndash;调度去要执行的Trigger触发器&ndash;&gt;
-                <ref bean="cronTrigger"/>
+                <!--调度去要执行的Trigger触发器-->
+                <!--<ref bean="cronTrigger"/>-->
             </list>
-        </property>-->
+        </property>
 
     </bean>
 

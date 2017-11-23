@@ -56,7 +56,7 @@ public class WeiXinAccessTokenTest {
      */
     @Test
     public void creatMember(){
-        weiXinUtil.creatMember("001","猎手","17630705330", Arrays.asList(2));
+        weiXinUtil.creatMember(1026,"猎手","17630705330", Arrays.asList(1017));
     }
 
     /**
@@ -64,7 +64,7 @@ public class WeiXinAccessTokenTest {
      */
     @Test
     public void deleteMember(){
-        weiXinUtil.deleteMember("001");
+        weiXinUtil.deleteMember("1026");
     }
 
     /**
