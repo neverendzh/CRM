@@ -233,7 +233,7 @@ public class WeiXinUtil {
      * @param url 请求的url地址
      * @param json 请求体
      */
-    private String sendHttpPostRequest(String url,String json) {
+    public String sendHttpPostRequest(String url,String json) {
         final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
         OkHttpClient client = new OkHttpClient();

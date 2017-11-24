@@ -17,6 +17,7 @@
         <module>../crm-service-impl</module>
         <module>../crm-web</module>
         <module>../weixin</module>
+        <module>../tulingzhineng</module>
     </modules>
 
     <properties>
