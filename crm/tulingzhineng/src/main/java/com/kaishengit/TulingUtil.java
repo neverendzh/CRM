@@ -24,7 +24,7 @@ public class TulingUtil {
     public String chatBot(){
         Map<String,Object> date = new HashMap<String, Object>();
         date.put("key",key);
-        date.put("info","怎么就扎心了");
+        date.put("info","好吧");
         date.put("userid","11");
         String resultJson = sendHttpPostRequestTuLing(POST_DEPT_URL,JSON.toJSONString(date));
         return resultJson;

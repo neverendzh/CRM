@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kaishengit.pojo">
+    <class name="com.kaishengit.pojo.Book" table="book">
+        <id name="id">
+            <!--主键生成策略，native是自动增长-->
+            <generator class="native"/>
+        </id>
+        <property name="bookIsbn" column="book_isbn"/>
+        <property name="bookName" column="book_name"/>
+        <property name="bookOuther" column="book_outher"/>
+        <property name="bookPerss" column="book_perss"/>
+        <property name="bookTotal" column="book_total"/>
+        <property name="bookNowTotal" column="book_now_total"/>
+        
+    </class>
+
+</hibernate-mapping>

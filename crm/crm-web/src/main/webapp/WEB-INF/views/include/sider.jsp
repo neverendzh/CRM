@@ -53,8 +53,7 @@
                 </ul>
             </li>
 
-
-            <li><a href="/disk/home"><i class="fa fa-share-alt"></i> <span>公司网盘</span></a></li>
+            <li class="${param.menu == 'disk' ? 'active' : ''}"><a href="/disk/home"><i class="fa fa-share-alt"></i> <span>公司网盘</span></a></li>
             <li class="header">系统管理</li>
             <!-- 部门员工管理 -->
             <li class="${param.menu == 'employee' ? 'active' : ''}"><a href="/employee"><i class="fa fa-users"></i> <span>员工管理</span></a></li>
