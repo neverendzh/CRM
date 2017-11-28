@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <!--配置数据库连接-->
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql:///t_book?serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">123456</property>
@@ -29,6 +29,8 @@
 
         <!--央射文件的注册-->
         <mapping resource="hbm/Book.hbm.xml"/>
+        <mapping resource="hbm/User.hbm.xml"/>
+        <mapping resource="hbm/Address.hbm.xml"/>
 
     </session-factory>
 
