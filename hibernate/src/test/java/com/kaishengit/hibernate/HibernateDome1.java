@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2017/11/27.
  * 使用hibernate的示例
  */
-public class hibernateDome {
+public class HibernateDome1 {
     @Test
     public void saveHelloHibernate(){
 //        1.读取classpath中名称为hibernate.cfg.xml的主配置文件
