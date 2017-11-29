@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kaishengit.pojo">
+    <class name="Student" table="student">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <property name="studentName" column="student_name" />
+        <!--在many to many 中order-by是关系表中的列-->
+        <set name="teacherSet" table="teacher_student" order-by="teacher_id desc">
+            <key column="student_id"></key>
+            <!--如果在多对多中配置了fetch="join"那么在查询是就不会使用懒加载模式，
+            如果是每查询一个学生都需要查询老师的话，那么就需要配置fetch="join"不使用懒加载模式，
+            从而提高性能，具体看业务需要-->
+            <many-to-many class="Teacher" column="teacher_id" fetch="join"/>
+        </set>
+    </class>
+
+</hibernate-mapping>

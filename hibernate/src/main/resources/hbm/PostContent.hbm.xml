@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.kaishengit.pojo">
+    <class name="PostContent" table="post_content">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <property name="content"/>
+        <many-to-one name="post" class="Post"
+                     column="post_id" unique="true"/>
+    </class>
+
+</hibernate-mapping>

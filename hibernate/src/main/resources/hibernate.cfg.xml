@@ -31,6 +31,12 @@
         <mapping resource="hbm/Book.hbm.xml"/>
         <mapping resource="hbm/User.hbm.xml"/>
         <mapping resource="hbm/Address.hbm.xml"/>
+        <mapping resource="hbm/Student.hbm.xml"/>
+        <mapping resource="hbm/Teacher.hbm.xml"/>
+        <mapping resource="hbm/Persion.hbm.xml"/>
+        <mapping resource="hbm/Card.hbm.xml"/>
+        <mapping resource="hbm/Post.hbm.xml"/>
+        <mapping resource="hbm/PostContent.hbm.xml"/>
 
     </session-factory>
 
