@@ -8,7 +8,8 @@
             <generator class="native"/>
         </id>
         <property name="name" column="name"/>
-        <set name="addressSet" order-by="id desc">
+        <!--inverse="true"表示放User这个对象弃维护关联关系   cascade="delete"在删除User是删除关联的表中的数据-->
+        <set name="addressSet" order-by="id desc" inverse="true" cascade="delete">
             <key column="user_id"></key>
             <one-to-many class="Address"/>
         </set>
