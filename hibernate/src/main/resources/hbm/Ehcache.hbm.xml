@@ -3,14 +3,12 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.kaishengit.pojo">
-    <class name="Post" table="post">
+    <class name="com.kaishengit.pojo.EhcacheEntity" table="ehcache">
+        <cache usage="read-write"/>
         <id name="id">
             <generator class="native"/>
         </id>
-        <property name="title"/>
-        <!--lazy="false"关闭延迟加载，也就是关闭懒加载模式-->
-        <!--fetch="join" 不使用懒加载模式-->
-        <many-to-one name="postContent" class="PostContent" column="content_id" unique="true" />
+        <property name="name"/>
     </class>
 
 </hibernate-mapping>

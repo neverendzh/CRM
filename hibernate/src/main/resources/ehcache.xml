@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ehcache>
+
+    <!--二级缓存的配置
+    当前登录用户的临时文件夹
+    maxElementsInMemory缓存中允许最多保存对象的数量
+    eternal缓存中数据是否为常量
+    timeToIdleSeconds缓存中数据钝化时间，多久不使用就清空，单位秒
+    timeToLiveSeconds缓存实际的生存时间，单位秒
+    overflowToDisk内存不足是，是否启用磁盘缓存-->
+    <diskStore path="java.io.tmpdir"/>
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="true"
+    />
+</ehcache>

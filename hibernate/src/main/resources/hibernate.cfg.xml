@@ -5,11 +5,11 @@
 <hibernate-configuration>
     <session-factory>
         <!--配置数据库连接-->
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql:///t_book?serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">123456</property>
-        
+
         <!--配置方言-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
@@ -27,6 +27,11 @@
 
         <property name="hibernate.current_session_context_class">thread</property>
 
+
+        <!--开启二级缓存，设置二级缓存的实现类-->
+        <property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+
         <!--央射文件的注册-->
         <mapping resource="hbm/Book.hbm.xml"/>
         <mapping resource="hbm/User.hbm.xml"/>
@@ -37,6 +42,7 @@
         <mapping resource="hbm/Card.hbm.xml"/>
         <mapping resource="hbm/Post.hbm.xml"/>
         <mapping resource="hbm/PostContent.hbm.xml"/>
+        <mapping resource="hbm/Ehcache.hbm.xml"/>
 
     </session-factory>
 

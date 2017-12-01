@@ -53,7 +53,7 @@
         <property name="triggers">
             <list>
                 <!--调度去要执行的Trigger触发器-->
-                <!--<ref bean="cronTrigger"/>-->
+                <!--<ref bean=" "/>-->
             </list>
         </property>
 
