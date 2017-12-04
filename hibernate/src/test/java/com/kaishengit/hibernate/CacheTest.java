@@ -3,6 +3,7 @@ package com.kaishengit.hibernate;
 import com.kaishengit.pojo.*;
 import com.kaishengit.util.HibernateUtil;
 import net.sf.ehcache.Ehcache;
+import org.hibernate.Cache;
 import org.hibernate.Session;
 import org.junit.Test;
 
@@ -54,7 +55,7 @@ public class CacheTest {
 //二级缓存在同一个sessionFactory产生的多个session实例间共享
 
     /**
-     * 二级缓存实现
+     * 二级缓存实现,POJO 类需要可序列话的。用于咋内存不够是放入磁盘中
      */
     @Test
     public void secondLevelCache(){
@@ -65,13 +66,18 @@ public class CacheTest {
 
         System.out.println(ehcache.getName());
 //        关闭session
-        session.evict(ehcache);
         session.getTransaction().commit();
+
+//        清空二级缓存evictEntityRegion()方法用于将执行对象从二级缓存中清楚
+//        evictAllRegions清空所有缓存对象
+        Cache cache = HibernateUtil.getSessionFactory().getCache();
+        cache.evictEntityRegion(EhcacheEntity.class);
+//        cache.evictAllRegions();
+
 
 //      重新获取session
         Session session1 = HibernateUtil.getSession();
         session1.beginTransaction();
-        session1.clear();
 //      先从二级缓存中获取，如果二级缓存没有在去一级缓存中获取，如果一级缓存中没有再去数据库中查找
         EhcacheEntity ehcache1 = (EhcacheEntity) session1.get(EhcacheEntity.class,1);
         System.out.println(ehcache1.getName());

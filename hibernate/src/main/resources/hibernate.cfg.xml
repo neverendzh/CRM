@@ -31,6 +31,8 @@
         <!--开启二级缓存，设置二级缓存的实现类-->
         <property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 
+        <!--隔离级别的设定防止才出现脏读，幻读和不可重复读 值为 1 2 4 8 默认是4-->
+        <!--<property name="connection.isolation">4</property>-->
 
         <!--央射文件的注册-->
         <mapping resource="hbm/Book.hbm.xml"/>
@@ -43,6 +45,7 @@
         <mapping resource="hbm/Post.hbm.xml"/>
         <mapping resource="hbm/PostContent.hbm.xml"/>
         <mapping resource="hbm/Ehcache.hbm.xml"/>
+        <mapping resource="hbm/Customer.hbm.xml"/>
 
     </session-factory>
 
