@@ -91,7 +91,7 @@ public class OneToManyTest {
      */
     @Test
     public void saveAddress(){
-        User user = (User) session.get(User.class,4);
+        User user = (User) session.get(User.class,9);
 
         Address address = new Address();
         address.setCityName("上海");
@@ -156,7 +156,7 @@ public class OneToManyTest {
 
     @Test
     public void delete2(){
-        User user = (User) session.get(User.class,12);
+        User user = (User) session.get(User.class,11);
         session.delete(user);
     }
 }

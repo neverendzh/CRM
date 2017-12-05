@@ -34,8 +34,20 @@
         <!--隔离级别的设定防止才出现脏读，幻读和不可重复读 值为 1 2 4 8 默认是4-->
         <!--<property name="connection.isolation">4</property>-->
 
+        <!--hibernate 的POJO类的注册基于注解形式使用-->
+        <mapping class="com.kaishengit.pojo.Admin"/>
+        <mapping class="com.kaishengit.pojo.User"/>
+        <mapping class="com.kaishengit.pojo.Address"/>
+        <mapping class="com.kaishengit.pojo.Student"/>
+        <mapping class="com.kaishengit.pojo.Teacher"/>
+        <mapping class="com.kaishengit.pojo.Post"/>
+        <mapping class="com.kaishengit.pojo.PostContent"/>
+        <mapping class="com.kaishengit.pojo.Persion"/>
+        <mapping class="com.kaishengit.pojo.Card"/>
+        <mapping class="com.kaishengit.pojo.Customer"/>
+
         <!--央射文件的注册-->
-        <mapping resource="hbm/Book.hbm.xml"/>
+       <!-- <mapping resource="hbm/Book.hbm.xml"/>
         <mapping resource="hbm/User.hbm.xml"/>
         <mapping resource="hbm/Address.hbm.xml"/>
         <mapping resource="hbm/Student.hbm.xml"/>
@@ -45,7 +57,7 @@
         <mapping resource="hbm/Post.hbm.xml"/>
         <mapping resource="hbm/PostContent.hbm.xml"/>
         <mapping resource="hbm/Ehcache.hbm.xml"/>
-        <mapping resource="hbm/Customer.hbm.xml"/>
+        <mapping resource="hbm/Customer.hbm.xml"/>-->
 
     </session-factory>
 

@@ -1,14 +1,23 @@
 package com.kaishengit.pojo;
 
+import javax.persistence.*;
+
 /**
  * @author zh
  * Created by Administrator on 2017/11/29.
+ *@PrimaryKeyJoinColumn表示自己的主键和Card的主键是一致的
  */
+@Entity
 public class Persion {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(name = "persion_name")
     private String persionName;
 
+    @OneToOne
+    @PrimaryKeyJoinColumn
     private Card card;
 
     public Card getCard() {

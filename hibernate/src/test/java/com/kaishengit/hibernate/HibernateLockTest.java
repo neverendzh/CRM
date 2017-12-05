@@ -36,7 +36,10 @@ public class HibernateLockTest {
     public void save(){
         Customer customer = new Customer();
         customer.setName("jak");
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
         session.save(customer);
+        session.getTransaction().commit();
     }
 
 
@@ -46,10 +49,13 @@ public class HibernateLockTest {
      */
     @Test
     public void update() throws InterruptedException {
-        Customer customer = (Customer) session.get(Customer.class,"402881af601f95cb01601f95d13d0000");
+        Session session1 = HibernateUtil.getSession();
+        session1.beginTransaction();
+        Customer customer = (Customer) session1.get(Customer.class,"402881af60249db40160249db65f0000");
         customer.setName("tom");
-        Thread.sleep(10000);
-        session.saveOrUpdate(customer);
+//        Thread.sleep(10000);
+        session1.saveOrUpdate(customer);
+        session1.getTransaction().commit();
     }
 
 

@@ -50,6 +50,7 @@ public class OneToOneTest {
 //      最佳实践，先存主数据，在存从数据
         session.save(persion);
         session.save(card);
+        session.getTransaction().commit();
     }
 
 
@@ -59,7 +60,7 @@ public class OneToOneTest {
     @Test
     public void find(){
 //        这样会自动关联Card这个表
-        Persion persion = (Persion) session.get(Persion.class,1);
+        Persion persion = (Persion) session.get(Persion.class,2);
         System.out.println(persion.getPersionName());
         System.out.println(persion.getCard().getCardNum());
 
@@ -78,16 +79,17 @@ public class OneToOneTest {
     @Test
     public void savePost(){
         Post post = new Post();
-        post.setTitle("哈利波特");
+        post.setTitle("哈利波特-2");
 
         PostContent postContent = new PostContent();
-        postContent.setContent("月黑风高");
+        postContent.setContent("月黑风高-2");
 
         postContent.setPost(post);
         post.setPostContent(postContent);
 
         session.save(post);
         session.save(postContent);
+        session.getTransaction().commit();
     }
 
 

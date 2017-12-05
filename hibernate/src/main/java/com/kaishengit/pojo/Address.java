@@ -1,13 +1,22 @@
 package com.kaishengit.pojo;
 
+import javax.persistence.*;
+
 /**
  * @author zh
  * Created by Administrator on 2017/11/28.
+ * fetch = FetchType.LAZY表示延迟加载，默认不会懒加载
  */
+@Entity
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(name = "city_name")
     private String cityName;
     private String address;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Integer getId() {
