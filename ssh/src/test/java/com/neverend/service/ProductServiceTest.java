@@ -10,11 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
- * @author zh
- * Created by Administrator on 2017/12/5.
+ * Created by Administrator on 2017/12/6.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-hibernate.xml")
@@ -27,5 +24,4 @@ public class ProductServiceTest {
         List<Product> productList = productService.findAll();
         Assert.assertEquals(productList.size(),50);
     }
-
 }

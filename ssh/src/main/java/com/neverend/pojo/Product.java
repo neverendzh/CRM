@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 /**
  * @author zh
  * Created by Administrator on 2017/12/5.
+ * 在多对一的情况下不会延迟加载，需要配置fetch = FetchType.LAZY
  */
 @Entity
 @Table(name = "kaola")
@@ -22,6 +23,21 @@ public class Product {
     private String place;
     @Column(name = "comment_num")
     private Integer commentNum;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id")
+    private ProductType productType;
+
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
 
     public Integer getId() {
         return id;
@@ -70,4 +86,5 @@ public class Product {
     public void setCommentNum(Integer commentNum) {
         this.commentNum = commentNum;
     }
+
 }
