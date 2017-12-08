@@ -55,14 +55,14 @@ public class RequestQuery {
             if (queryKey.startsWith("q_")&&!"".equals(value)&& value != null){
 //              q_xxx_eq_s
 //              如果符合约定，那么根据下划线分隔截取值，获得Spring数组
-                String[] array = queryKey.split("_");
+                String[] array = queryKey.split("_",4);
                 if (array == null || array.length != 4){
                     throw new IllegalArgumentException("查询参数异常"+queryKey);
                 }
                 RequestQuery requestQuery = new RequestQuery();
-                requestQuery.setParameterName(array[1]);
-                requestQuery.setEqualType(array[2]);
-                requestQuery.setValue(tranValueType(array[3],value));
+                requestQuery.setParameterName(array[3]);
+                requestQuery.setEqualType(array[1]);
+                requestQuery.setValue(tranValueType(array[2],value));
                 requestQueryList.add(requestQuery);
 
             }

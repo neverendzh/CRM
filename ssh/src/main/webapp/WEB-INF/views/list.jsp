@@ -18,9 +18,8 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form action="" class="form-inline">
-                        <input type="text" placeholder="商品名称" name="q_productName_like_s" class="form-control">
-                        <input type="text" placeholder="价格" name="q_price_eq_bd">
-                        <input type="text" placeholder="市场价格" name="q_marketPrice_eq_bd">
+                        <input type="text" placeholder="商品名称" name="q_like_s_productName" class="form-control">
+                        <input type="text" placeholder="价格或市场价格" name="q_eq_bd_price_or_marketPrice" class="form-control">
                         <button class="btn btn-default">搜索</button>
                     </form>
                 </div>
@@ -40,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-               <c:forEach items="${productList}" var="product">
+               <c:forEach items="${page.items}" var="product">
                    <tr>
                        <td><a href="/product/${product.id}">${product.productName}</a> </td>
                        <td>${product.price}</td>

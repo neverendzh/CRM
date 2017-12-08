@@ -2,6 +2,7 @@ package com.neverend.controller;
 
 import com.neverend.pojo.Product;
 import com.neverend.service.ProductService;
+import com.neverend.util.Page;
 import com.neverend.util.RequestQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,10 +29,12 @@ public class ProductController {
      * @return
      */
     @GetMapping
-    public String home(Model model, HttpServletRequest request) {
+    public String home(Model model,
+                       HttpServletRequest request,
+                       @RequestParam(required = false,name = "p",defaultValue = "1") Integer pageNo) {
         List<RequestQuery> requestQueryList = RequestQuery.builderRequestQuery(request);
-        List<Product> productList = productService.findByRequestQuery(requestQueryList);
-        model.addAttribute("productList",productList);
+        Page<Product> productList = productService.findByRequestQuery(requestQueryList,pageNo);
+        model.addAttribute("page",productList);
         return "list";
     }
 

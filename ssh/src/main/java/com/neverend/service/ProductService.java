@@ -2,6 +2,7 @@ package com.neverend.service;
 
 import com.neverend.dao.ProductDao;
 import com.neverend.pojo.Product;
+import com.neverend.util.Page;
 import com.neverend.util.RequestQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +45,23 @@ public class ProductService {
         }
     }
 
+    /**
+     * 根据查询条件返回数据
+     * @param requestQueryList
+     * @return
+     */
     public List<Product> findByRequestQuery(List<RequestQuery> requestQueryList) {
         return productDao.findByRequestQueryList(requestQueryList);
 
+    }
+
+    /**
+     * 根据查询条件和分页查询数据
+     * @param requestQueryList
+     * @param pageNo
+     * @return
+     */
+    public Page<Product> findByRequestQuery(List<RequestQuery> requestQueryList, Integer pageNo) {
+        return productDao.findByRequestListAndPageNo(requestQueryList,pageNo);
     }
 }
