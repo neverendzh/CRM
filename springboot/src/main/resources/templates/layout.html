@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">好买卖网站</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!--头部-->
+    <h1>header 顶部</h1>
+    <!--内容部分-->
+    <div layout:fragment="context"></div>
+    <!--底部-->
+    <h3>@2017底部</h3>
+    <script layout:fragment="js"></script>
+</body>
+</html>

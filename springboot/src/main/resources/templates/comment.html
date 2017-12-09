@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被引入页面-->
+    <div class="header" th:fragment="topHeader">
+        <h1>CRM</h1>
+    </div>
+
+    <!--被引入页面-->
+    <div class="header" th:fragment="footer">
+        <h1>@neverend</h1>
+    </div>
+
+    <div class="header" id="footer">
+        <h1>@neverend</h1>
+    </div>
+<!-- 引入页面传递参数-->
+    <div class="header" th:fragment="topfooter(title)">
+        <h1>CRM <span th:text="${title}"></span></h1>
+    </div>
+
+
+</body>
+</html>

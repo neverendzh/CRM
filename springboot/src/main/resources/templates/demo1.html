@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpringBootDemo</title>
+</head>
+<body>
+<!--引入html页面-->
+    <!--引入页面中的整个div代上div标签一起引入-->
+     <div th:insert="~{comment::topHeader}"></div>
+    <!--引入页面div标签以及中的内容，不会当前div标签引入-->
+     <div th:replace="~{comment::topHeader}"></div>
+     <!--include是吧div中的内容引入-->
+      <div th:include="~{comment::topHeader}"></div>
+
+<!--引入需要传递参数的div-->
+     <div th:replace="~{comment::topfooter('2017-12-9')}"></div>
+<!--超链接-->
+    <a th:href="@{/user(id=${user.id})}">/user?id=100</a>
+    <a th:href="@{/user/{id}/{name}(id=${user.id},name=${user.userName})}">/user/100/张三</a>
+
+
+<!--表单-->
+    <!--th:attr="data-id=${user.id}" 是自定义属性的-->
+    <h1 th:rel="${user.id}" th:attr="data-id=${user.id},data-name=${user.userName}">hello Springboot</h1>
+    <input type="text" th:value="${user.userName}">
+
+
+
+
+
+<!--循环name临时变量-->
+     <ul>
+         <li th:each="name : ${userNameList}" th:text="${name}"></li>
+     </ul>
+
+    <ul>
+        <li th:each="name,iterStat : ${userNameList}" th:text="${iterStat.index+'--->'+iterStat.count+'---->' + name}"></li>
+    </ul>
+
+
+<!--取值-->
+    <!-- "${message}"表示从Controller传来的值/-->
+    <h1 th:text="${message}">Hello,springBoot 1.5.0</h1>
+    <!-- 从对象中取值-->
+    <h2 th:text="${user.userName}"></h2>
+    <!--从session中取值，需要制定从哪个空间取值-->
+    <h3 th:text="${session.msg}"></h3>
+    <!--从Url中取值-->
+    <h3 th:text="${param.q}"></h3>
+
+<!--判断-->
+    <h3 th:if="${user.userName == '张三'}">hello 张三</h3>
+    <!--th:unless="${user.userName == 'lisi'}" 表示条件的取反-->
+    <h3 th:unless="${user.userName == 'lisi'}">hello 张三</h3>
+    <!--Switch判断,th:case="*"表示如果都不成立则输出-->
+    <ul th:switch="${user.userName}">
+        <li th:case="lisi">hello lisi</li>
+        <li th:case="wangwu">hello wangwu</li>
+        <li th:case="张三">hello 张三</li>
+        <li th:case="*">welcome SpringBoot</li>
+    </ul>
+
+
+
+
+<!--静态文件-->
+    <!--"@{'/image/duoyun.png'}"服务端获取静态文件方式-->
+    <!--../static/image/duoyun.png本地获取静态文件方式-->
+    <img th:src="@{'/image/duoyun.png'}" src="../static/image/duoyun.png">
+<!--引入页面中的div-->
+    <!--th:fragment="footer"引入的div中添加-->
+    <div th:replace="~{comment::footer}"></div>
+    <!--id="footer"引入的div中添加-->
+    <div th:replace="~{comment::#footer}"></div>
+
+
+
+<script th:inline="javascript">
+//   javascript中渲染值
+    var id = [[${user.id}]];
+    var name = [[${user.userName}]];
+
+// 判断3.0之后有的特性
+    [# th:if="${user.id == 100}"]
+        var id = [[${user.id}]];
+        var name = [[${user.userName}]];
+    [/]
+
+
+</script>
+</body>
+</html>
