@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="CommodityService"/>
+    <!--dubbo的协议和端口-->
+    <dubbo:registry address="zookeeper://192.168.1.47:2181"/>
+    <!--接收消费服务-->
+    <dubbo:reference interface="com.neverend.service.CommodityService" id="rpcCommodityService"/>
+</beans>
