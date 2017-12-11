@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
 public class UserDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    public void save(int id, String password){
-        String sql = "insert into persion (id,persion_name) values (?,?) ";
-        jdbcTemplate.update(sql,id,password);
+    public void save(int id, String name){
+        String sql = "insert into person (id,person_name) values (?,?) ";
+        jdbcTemplate.update(sql,id,name);
     }
 
 }

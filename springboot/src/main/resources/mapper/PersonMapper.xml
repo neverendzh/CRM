@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neverend.mapper.PersonMapper">
+
+    <!--useGeneratedKeys="true" keyProperty="id"-->
+    <insert id="save" parameterType="com.neverend.entity.Person">
+        insert into person (id,person_name) values (#{id},#{personName})
+    </insert>
+</mapper>

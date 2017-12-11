@@ -1,16 +1,16 @@
 package com.neverend.controller;
 
 import com.neverend.dao.UserDao;
+import com.neverend.entity.Person;
 import com.neverend.entity.User;
+import com.neverend.mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,10 +23,24 @@ public class HomeController {
 
     @Autowired
     private UserDao userDao;
-    @GetMapping("/save")
+    @Autowired
+    private PersonMapper personMapper;
+
+    @GetMapping("/save1")
     @ResponseBody
-    public String saveAccount(){
-        userDao.save(19,"ZhangSan");
+    public String saveAccount1(){
+        Person person = new Person();
+        person.setId(31);
+        person.setPersonName("mybatis-SpringBoot");
+        personMapper.save(person);
+        return "hi";
+    }
+
+
+    @GetMapping("/save2")
+    @ResponseBody
+    public String saveAccount2(){
+        userDao.save(29,"ZhangSan");
         return "hi";
     }
     @GetMapping("/home")
