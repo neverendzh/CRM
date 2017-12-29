@@ -18,12 +18,19 @@ import javax.imageio.spi.ServiceRegistry;
 public class DemoController {
     @Autowired
     private RestTemplate restTemplate;
-//    提供负载均衡和服务发现
-    @Autowired
-    private LoadBalancerClient loadBalancerClient;
+    //提供负载均衡和服务发现
+//    @Autowired
+//    private LoadBalancerClient loadBalancerClient;
+//    @GetMapping("/demo")
+//    public Movie demoMovie(){
+//        ServiceInstance serviceInstance = loadBalancerClient.choose("MOVIE-SERVICE-PROVIDER-NODE2");
+//        return restTemplate.getForObject("http://"+serviceInstance.getHost()+":"+serviceInstance.getPort()+"/movie/1",Movie.class);
+//    }
+
+    //提供负载均衡和服务发现
+
     @GetMapping("/demo")
     public Movie demoMovie(){
-        ServiceInstance serviceInstance = loadBalancerClient.choose("MOVIE-SERVICE-PROVIDER");
-        return restTemplate.getForObject("http://"+serviceInstance.getHost()+":"+serviceInstance.getPort()+"/movie/1",Movie.class);
+        return restTemplate.getForObject("http://MOVIE-SERVICE-PROVIDER-NODE2/movie/1",Movie.class);
     }
 }
